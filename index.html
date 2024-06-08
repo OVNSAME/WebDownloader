@@ -5,27 +5,29 @@
 </head>
 <body>
 <script>
-    function download(file_download_name) {
-            window.onload = function() {
-                var fileUrl = file_download;
+function download(file_download_name) {
+    window.onload = function() {
+        var fileUrl = file_download_name;  // Используем переданное имя файла
 
-                var link = document.createElement('a');
-                link.href = fileUrl;
-                link.download = file_download;
+        var link = document.createElement('a');
+        link.href = fileUrl;
+        link.download = file_download_name;  // Используем переданное имя файла
 
-                document.body.appendChild(link);
-                link.click();
+        document.body.appendChild(link);
+        link.click();
 
-                setTimeout(function() {
-                    window.open('', '_self').close();
-                }, 4000);
-            };
+        setTimeout(function() {
+            window.open('', '_self').close();
+        }, 4000);
+    };
+}
 
+const urlParams = new URLSearchParams(window.location.search);
+const file = urlParams.get('file');
 
-        const urlParams = new URLSearchParams(window.location.search);
-        const file = urlParams.get('file');
-
-        if (file === "CL") {download("levels_names.txt")}
+if (file === "CL") {
+    download("levels_names.txt");
+}
 
     }
 </script>
